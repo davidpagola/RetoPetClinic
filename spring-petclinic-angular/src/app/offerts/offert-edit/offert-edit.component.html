@@ -1,3 +1,52 @@
-<p>
-  offert-edit works!
-</p>
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>
+      Edit Offert
+    </h2>
+    <form (ngSubmit)="onSubmit(offertForm.value)" #offertForm="ngForm" class="form-horizontal">
+      <div class="form-group" hidden="true">
+        <input type="text" hidden="true" class="form-control" id="id" [(ngModel)]="offert.id" name="id"/>
+      </div>
+      <div class="form-group has-feedback" [class.has-success]="titulo.valid" [class.has-error]="!titulo.valid">
+        <label for="titulo" class="col-sm-2 control-label">Titulo</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="titulo" [(ngModel)]="offert.titulo" minlength="2" required name="titulo" #titulo="ngModel"/>
+          <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="titulo.valid" [class.glyphicon-remove]="!titulo.valid" aria-hidden="true"></span>
+          <span class="help-block" *ngIf="titulo.dirty && titulo.hasError('required')">Titulo is required</span>
+          <span class="help-block" *ngIf="titulo.dirty && titulo.hasError('minlength')">Titulo must be at least 2 characters long</span>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.has-success]="detalle.valid" [class.has-error]="!detalle.valid">
+        <label for="detalle" class="col-sm-2 control-label">Detalle</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="detalle" [(ngModel)]="offert.detalle" name="detalle" minlength="2" required #detalle="ngModel"/>
+          <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="detalle.valid" [class.glyphicon-remove]="!detalle.valid" aria-hidden="true"></span>
+          <span class="help-block" *ngIf="detalle.dirty && detalle.hasError('required')">Detalle is required</span>
+          <span class="help-block" *ngIf="detalle.dirty && detalle.hasError('minlength')">Detalle must be at least 2 characters long</span>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.has-success]="descuento.valid" [class.has-error]="!descuento.valid">
+        <label for="descuento" class="col-sm-2 control-label">Descuento</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="descuento" [(ngModel)]="offert.descuento" name="descuento" required #descuento="ngModel"/>
+          <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="descuento.valid" [class.glyphicon-remove]="!descuento.valid" aria-hidden="true"></span>
+          <span class="help-block" *ngIf="descuento.dirty && descuento.hasError('required')">Descuento is required</span>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.has-success]="fechaCaducidad.valid" [class.has-error]="!fechaCaducidad.valid">
+        <label for="fechaCaducidad" class="col-sm-2 control-label">Fecha de Caducidad</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="fechaCaducidad" [(ngModel)]="offert.fechaCaducidad" name="fechaCaducidad" required #fechaCaducidad="ngModel"/>
+          <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="fechaCaducidad.valid" [class.glyphicon-remove]="!fechaCaducidad.valid" aria-hidden="true"></span>
+          <span class="help-block" *ngIf="fechaCaducidad.dirty && fechaCaducidad.hasError('required')">Fecha de Caducidad is required</span>
+        </div>
+     
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-default" (click)="gotoOffertDetail(offert)">Back</button>
+          <button type="submit" [disabled]="!offertForm.valid" class="btn btn-default">Update Offert</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
